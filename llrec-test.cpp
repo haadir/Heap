@@ -86,9 +86,21 @@ int main(int argc, char* argv[])
     print(head);
 
     // Test out your linked list code
+    Node* smaller;
+    Node* larger;
 
+		//pt1
+    llpivot(head, smaller, larger, 1);
+    cout << "Smaller: ";
+    print(smaller);
+    cout << "Larger: ";
+    print(larger);
 
-
+		//pt2
+		Comp isOdd;
+		Node* evens = llfilter<Comp>(larger, isOdd);
+		cout << endl << "Even numbers: ";
+		print(evens);
     
     return 0;
 
