@@ -13,6 +13,14 @@ struct Node
     Node(int v, Node* n) : val(v), next(n) {}
 };
 
+  struct Comp {
+    bool operator()(const int& checkOdd) 
+    { // Uses string's built in operator< 
+      // to do lexicographic (alphabetical) comparison
+      return checkOdd % 2 != 0; 
+    }
+  };
+
 
 /**
  * Given a linked list pointed to by head, creates two lists
@@ -81,8 +89,21 @@ Node* llfilter(Node* head, Comp pred)
     //*********************************************
     // Provide your implementation below
     //*********************************************
+	
+	if (head == NULL) {
+		return nullptr;
+	}
 
+	Node* temp = llfilter(head->next, pred);
 
+	if (pred(head->val)) {
+		delete head;
+		return temp;
+	}
+	else {
+		head->next = temp;
+		return head;
+	}
 }
 
 #endif
